@@ -3,12 +3,20 @@ spring:
     name: lzx-ai-agent
   profiles:
     active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url:
   ai:
     dashscope:
       chat:
         options:
           model: qwen-plus
       api-key: <your api key>
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
 server:
   port: 8123
   servlet:
