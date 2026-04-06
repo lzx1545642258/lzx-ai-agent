@@ -355,3 +355,29 @@ public LoveApp(ChatModel dashscopeChatModel, JdbcChatMemoryRepository chatMemory
 - @Value注入资源应该在构造函数作为参数注入，而不是作为一个字段进行注入。否则构造函数会在资源注入之前就完成，导致资源注入失败
 
 ---
+
+## 2026-04-06：CORS
+
+### 概念
+CORS（Cross-Origin Resource Sharing，跨域资源共享）是一种浏览器安全机制，用于控制网页从一个源（域名、协议、端口）请求另一个源的资源。
+
+### 配置方法
+```java
+@Configuration
+public class CorsConfig implements WebMvcConfigurer {
+    
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")  // 所有路径
+                .allowedOrigins("http://localhost:3000")  // 允许的源
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true)  // 允许携带凭证
+                .maxAge(3600);  // 预检请求缓存时间
+    }
+}
+```
+
+---
+
+## 2026-04-07: 
